@@ -15,17 +15,17 @@ FAKE_MAC_OS_UNAME_KERNEL_12_2_0 = ('Darwin', 'phantom', '12.2.0',
 class TestMacKernelVersion(unittest.TestCase):
 #pylint: disable=R0904
 
-    @patch('os.uname')
+    @patch('multi_platform.mac_funcs.get_os_uname')
     def test_is_mac_kernel_ver_good_returns_false_when_ver_lower_than_min(self, os_uname_mock):
         os_uname_mock.return_value = FAKE_MAC_OS_UNAME_KERNEL_10_3_0
         self.assertFalse(is_mac_kernel_ver_good())
 
-    @patch('os.uname')
+    @patch('multi_platform.mac_funcs.get_os_uname')
     def test_is_mac_kernel_ver_good_returns_true_when_ver_equals_min(self, os_uname_mock):
         os_uname_mock.return_value = FAKE_MAC_OS_UNAME_KERNEL_11_0_0
         self.assertTrue(is_mac_kernel_ver_good())
 
-    @patch('os.uname')
+    @patch('multi_platform.mac_funcs.get_os_uname')
     def test_is_mac_kernel_ver_good_returns_true_when_ver_above_min(self, os_uname_mock):
         os_uname_mock.return_value = FAKE_MAC_OS_UNAME_KERNEL_12_2_0
         self.assertTrue(is_mac_kernel_ver_good())
